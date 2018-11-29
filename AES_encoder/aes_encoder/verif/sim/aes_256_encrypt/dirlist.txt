@@ -1,0 +1,8 @@
+design/pkg
+design/lib
+design/src/
+design/src/aes_encryp_submodules
+verif/lib/pkg
+verif/lib
+verif/tb/pkg
+verif/tb/aes_256_encrypt_tb
