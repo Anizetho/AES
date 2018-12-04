@@ -1,0 +1,85 @@
+/*
+
+Xilinx Vivado v2018.1 (64-bit) [Major: 2018, Minor: 1]
+SW Build: 2188600 on Wed Apr  4 18:40:38 MDT 2018
+IP Build: 2185939 on Wed Apr  4 20:55:05 MDT 2018
+
+Process ID: 3448
+License: Customer
+
+Current time: 	Tue Dec 04 12:32:38 CET 2018
+Time zone: 	Central European Time (Europe/Paris)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 4
+
+Screen size: 1280x800
+Screen resolution (DPI): 96
+Available screens: 1
+Available disk space: 17 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+
+Java version: 	1.8.0_112 64-bit
+Java home: 	C:/Xilinx/Vivado/Vivado/2018.1/tps/win64/jre
+Java executable location: 	C:/Xilinx/Vivado/Vivado/2018.1/tps/win64/jre/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 2 GB
+
+
+User name: 	Anizetho
+User home directory: C:/Users/Anizetho
+User working directory: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb
+User country: 	BE
+User language: 	fr
+User locale: 	fr_BE
+
+RDI_BASEROOT: C:/Xilinx/Vivado/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/Vivado/2018.1
+RDI_DATADIR: C:/Xilinx/Vivado/Vivado/2018.1/data
+RDI_BINDIR: C:/Xilinx/Vivado/Vivado/2018.1/bin
+
+Vivado preferences file location: C:/Users/Anizetho/AppData/Roaming/Xilinx/Vivado/2018.1/vivado.xml
+Vivado preferences directory: C:/Users/Anizetho/AppData/Roaming/Xilinx/Vivado/2018.1/
+Vivado layouts directory: C:/Users/Anizetho/AppData/Roaming/Xilinx/Vivado/2018.1/layouts
+PlanAhead jar file location: 	C:/Xilinx/Vivado/Vivado/2018.1/lib/classes/planAhead.jar
+Vivado log file location: 	C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/vivado.log
+Vivado journal file location: 	C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/vivado.jou
+Engine tmp dir: 	C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/.Xil/Vivado-3448-DESKTOP-IKRFOQ0
+
+GUI allocated memory:	203 MB
+GUI max memory:		3,052 MB
+Engine allocated memory: 537 MB
+
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: START_PROGRESS_DIALOG
+// bv (ch):  Sourcing Tcl script 'loadwave.tcl' : addNotify
+// TclEventType: LOAD_FEATURE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: source loadwave.tcl 
+// Tcl Message: # open_wave_database mylib.aes_256_encrypt_tb.wdb 
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_NEW
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// [GUI Memory]: 54 MB (+54052kb) [00:00:09]
+// [Engine Memory]: 537 MB (+411482kb) [00:00:09]
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/Vivado/2018.1/data/ip'. 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 63 MB (+6228kb) [00:00:10]
+// TclEventType: SIMULATION_CREATE_SIMULATION_OBJECT
+// TclEventType: SIMULATION_UPDATE_SIMULATION_STATE
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// [Engine Memory]: 566 MB (+2173kb) [00:00:12]
+// TclEventType: STOP_PROGRESS_DIALOG
+// HMemoryUtils.trashcanNow. Engine heap size: 571 MB. GUI used memory: 36 MB. Current time: 12/4/18 12:32:41 PM CET
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+dismissDialog("Sourcing Tcl script 'loadwave.tcl'"); // bv (ch)
+// TclEventType: STOP_PROGRESS_DIALOG

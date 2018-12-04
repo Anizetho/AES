@@ -10,7 +10,7 @@ package aes_cipher_io_pack is
 
 constant C_RESULT_IF_FORMAT : t_tbe_io_interface_format(0 to 1) :=(
 
-0 => (PORT_NAME  => "ciphertext",
+0 => (PORT_NAME  => "ciphtxt",
       PORT_WIDTH => 128
       --CHAR_TYPE  => BIN,
       --CHAR_SIZE  => 1

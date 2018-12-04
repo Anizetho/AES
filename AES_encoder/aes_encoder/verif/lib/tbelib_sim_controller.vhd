@@ -12,7 +12,7 @@ use work.tbelib_io_pack.all;
 
 entity tbelib_sim_controller is
    port(
-      clock      : in  std_logic;
+      clk      : in  std_logic;
       resetn   : in  std_logic;
 
       activity : in  std_logic;
@@ -30,11 +30,11 @@ begin
    no_activity_cnt_n <= to_unsigned(MAX_INACTIVE_CYCLES,10)  when activity='1' else
                         no_activity_cnt - 1;
 
-   p_no_activity_cnt: process(clock,resetn)
+   p_no_activity_cnt: process(clk,resetn)
    begin
       if resetn='0' then
          no_activity_cnt <= to_unsigned(MAX_INACTIVE_CYCLES,10);
-      elsif rising_edge(clock) then
+      elsif rising_edge(clk) then
          no_activity_cnt <= no_activity_cnt_n;
          if(mismatch='1') then
             assert false report "End of Simulation(ERROR: Mismatch)" severity failure;

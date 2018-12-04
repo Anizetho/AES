@@ -13,7 +13,6 @@ C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/design/src/aes_e
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/design/src/aes_encryp_submodules/sub_byte.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/pkg/tbelib_io_pack.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/tbelib_io_read.vhd
-C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/tbelib_io_read_tb.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/tbelib_io_write.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/tbelib_sim_controller.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/tb/pkg/aes_cipher_io_pack.vhd

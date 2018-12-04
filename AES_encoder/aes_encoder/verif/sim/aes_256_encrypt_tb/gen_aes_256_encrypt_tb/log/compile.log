@@ -1,0 +1,38 @@
+INFO: [XSIM 43-3496] Using init file passed via -initfile option "../xsim.ini".
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/pkg/aes_256_package.vhd" into library mylib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/lib/tbelib_pipedemux.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity tbelib_pipedemux
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/lib/tbelib_pipefsm.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity tbelib_pipefsm
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/lib/tbelib_pipemux.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity tbelib_pipemux
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_256_encrypt.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity aes_256_encrypt
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encrypt_wrapper.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity aes_encrypt_wrapper
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/add_round_key.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity add_round_key
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/aes_256_package.vhd" into library mylib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/key_scheduler_256.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity key_scheduler_256
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/mix_column.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity mix_column
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/mix_column_aux.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity mix_column_aux
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/shift_rows.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity shift_rows
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/sub_byte.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity sub_byte
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/pkg/tbelib_io_pack.vhd" into library mylib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_io_read.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity tbelib_io_read
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_io_write.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity tbelib_io_write
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity tbelib_sim_controller
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/tb/pkg/aes_cipher_io_pack.vhd" into library mylib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/tb/pkg/aes_encrypt_io_pack.vhd" into library mylib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/tb/aes_256_encrypt_tb/aes_256_encrypt_stim.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity aes_256_encrypt_stim
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/tb/aes_256_encrypt_tb/aes_256_encrypt_tb.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity aes_256_encrypt_tb

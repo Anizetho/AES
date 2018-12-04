@@ -1,0 +1,37 @@
+INFO: [XSIM 43-3496] Using init file passed via -initfile option "../xsim.ini".
+Vivado Simulator 2018.1
+Copyright 1986-1999, 2001-2017 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/Vivado/2018.1/bin/unwrapped/win64.o/xelab.exe -relax -debug typical -mt auto -L secureip -log log/elaborate.log -initfile ../xsim.ini mylib.aes_256_encrypt_tb 
+Multi-threading is on. Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling package mylib.aes_256_package
+Compiling package ieee.numeric_std
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package ieee.std_logic_textio
+Compiling package mylib.tbelib_io_pack
+Compiling package mylib.aes_cipher_io_pack
+Compiling package mylib.aes_encrypt_io_pack
+Compiling architecture behavioral of entity mylib.key_scheduler_256 [key_scheduler_256_default]
+Compiling architecture behavioral of entity mylib.add_round_key [add_round_key_default]
+Compiling architecture behavioral of entity mylib.sub_byte [sub_byte_default]
+Compiling architecture behavioral of entity mylib.shift_rows [shift_rows_default]
+Compiling architecture behavioral of entity mylib.mix_column_aux [mix_column_aux_default]
+Compiling architecture behavioral of entity mylib.mix_column [mix_column_default]
+Compiling architecture behavioral of entity mylib.aes_256_encrypt [aes_256_encrypt_default]
+Compiling architecture behavioral of entity mylib.aes_encrypt_wrapper [aes_encrypt_wrapper_default]
+Compiling architecture tb of entity mylib.tbelib_sim_controller [tbelib_sim_controller_default]
+Compiling architecture tb of entity mylib.tbelib_io_read [\tbelib_io_read(g_file="./infile...]
+Compiling architecture tb of entity mylib.tbelib_io_write [\tbelib_io_write(g_file="./outfi...]
+Compiling architecture behavioral of entity mylib.aes_256_encrypt_stim [aes_256_encrypt_stim_default]
+Compiling architecture behavioral of entity mylib.aes_256_encrypt_tb
+Built simulation snapshot mylib.aes_256_encrypt_tb

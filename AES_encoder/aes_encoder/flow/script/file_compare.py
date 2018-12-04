@@ -2,7 +2,7 @@
 import os
 import sys
 
-def f_compare(ref_filepath, comp_filepath, comment_line_start="--", stop_at_1st_error = True):
+def f_compare(ref_filepath, comp_filepath, comment_line_start="/", stop_at_1st_error = True):
    if not os.path.isfile(ref_filepath):
       print("Reference file not found: " + ref_filepath)
       return -1

@@ -7,8 +7,7 @@
 library IEEE;
 use IEEE.std_logic_1164.ALL;
 
-library WORK;
-use WORK.aes_pkg.ALL;
+
 
 entity tbelib_pipefsm is
    port(

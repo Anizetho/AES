@@ -45,6 +45,7 @@ end component;
     signal aes_done    : std_logic;
     signal aes_cipher_enable_l : std_logic;
     signal aes_cipher_valid_r : std_logic;
+    signal reset              : std_logic ;
 
 begin
    p_aes_start: process(clock)
@@ -62,10 +63,11 @@ begin
    aes_cipher_enable   <= aes_cipher_enable_l;
 
    aes_rtn_valid <= aes_done;
+   reset <= not resetn;
 
-   i_aes_256_encrypt_wrapper : aes_256_encrypt PORT MAP
+   i_aes_256_encrypt : aes_256_encrypt PORT MAP
 	    (clock        	=>clock ,
-        resetn       =>resetn ,
+        resetn       =>reset ,
 
         start       =>aes_start ,
         plaintext   =>aes_cipher_plaintext ,

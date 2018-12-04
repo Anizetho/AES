@@ -13,7 +13,7 @@ end aes_256_encrypt_tb;
 
 architecture behavioral of aes_256_encrypt_tb IS
 
-    component aes_256_encrypt is
+    component aes_encrypt_wrapper is
     port(
         clock : in  STD_LOGIC;
         resetn : in  STD_LOGIC;
@@ -65,7 +65,7 @@ architecture behavioral of aes_256_encrypt_tb IS
 	 signal aes_rtn_ciphertext   : STD_LOGIC_VECTOR(127 downto 0);
 
 begin
-    i_aes_256_encrypt : aes_256_encrypt
+    i_aes_encrypt_wrapper : aes_encrypt_wrapper
     port map (
          clock        => clock,
          resetn     => resetn,

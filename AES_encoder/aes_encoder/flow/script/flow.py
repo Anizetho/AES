@@ -18,15 +18,15 @@ TOP_LVL      = WORKDIR.split('/')[-1]
 DEFAULT_SNAPSHOT  = TOP_LVL
 
 WORKLIB_NAME      = "mylib"
-WORKLIB_DIRNAME   = WORKLIB_NAME + "\\"
-WORKLIB_PATH      = WORKLIB_DIRNAME + '\\'
+WORKLIB_DIRNAME   = WORKLIB_NAME + "/"
+WORKLIB_PATH      = WORKLIB_DIRNAME + '/'
 
 DIRLIST_FILENAME  = 'dirlist.txt'
 FILELIST_FILENAME = 'filelist.txt'
 SIMOUT_FILENAME   = 'simout_compare_filelist.txt'
 
-DIRLIST_FILEPATH  = "..\\" + DIRLIST_FILENAME  #WORK_DIRPATH + DIRLIST_FILENAME
-FILELIST_FILEPATH = "..\\" + FILELIST_FILENAME #GEN_DIRPATH  + FILELIST_FILENAME
+DIRLIST_FILEPATH  = "../" + DIRLIST_FILENAME  #WORK_DIRPATH + DIRLIST_FILENAME
+FILELIST_FILEPATH = "../" + FILELIST_FILENAME #GEN_DIRPATH  + FILELIST_FILENAME
 
 XPRJ_FILENAME     = 'vhdl.prj'
 
@@ -36,13 +36,13 @@ def check(filepath, failOnWarning = False):
    '''
    '''
    rpt_log    = ""
+   errorCnt   = 0
+   warningCnt = 0
    for logfile in filepath:
       if not os.path.isfile(logfile):
          flowMsg("ERROR", "File "+ logfile + " not found !")
       else:
-         warningCnt = 0
          warninglog = ""
-         errorCnt   = 0
          errorlog   = ""
 
          flowMsg("INFO", "Checking "+ logfile + "...")
@@ -63,32 +63,25 @@ def gen_filelist():
    '''
    Generate filelist.txt, a list of files found in directories mentionned by dirlist.txt
    '''
-   file_dlist = open(DIRLIST_FILEPATH,"r")
-   file_flist = open(FILELIST_FILEPATH,"w+")
-   for line in file_dlist:
-      path = os.environ[PRJ_ROOT_ENV] + "/" + line.replace('\n','');
-      print(path)
-      for elem in os.listdir(path):
-         full_path = path + "/" + elem
-         if (not (os.path.isdir(full_path)) and (elem.split('.')[-1] == "vhd")):
-            file_flist.write(full_path + "\n")
-   file_dlist.close()
-   file_flist.close()
+   with open(DIRLIST_FILEPATH,"r") as file_dlist, open(FILELIST_FILEPATH,"w+") as file_flist:
+      for line in file_dlist:
+         path = os.environ[PRJ_ROOT_ENV] + "/" + line.replace('\n','');
+         #print(path)
+         for elem in os.listdir(path):
+            full_path = path + "/" + elem
+            if (not (os.path.isdir(full_path)) and (elem.split('.')[-1] == "vhd")):
+               file_flist.write(full_path + "\n")
 
 def gen_xprj():
    '''
    Generate a xilinx project file including the files mentionned in the filelist file.
    '''
-   file_flist = open(FILELIST_FILEPATH,"r")
-   file_prj   = open(XPRJ_FILEPATH,"w+")
+   with open(FILELIST_FILEPATH,"r") as file_flist, open(XPRJ_FILEPATH,"w+") as file_prj:
 
-   file_prj.write("vhdl xil_defaultlib  \\\n")
-   for line in file_flist:
-      file_prj.write('"' + line.replace('\n','') +'"' + " \\\n")
-   file_prj.write("\nnosort")
-
-   file_flist.close()
-   file_prj.close()
+      file_prj.write("vhdl xil_defaultlib  \\\n")
+      for line in file_flist:
+         file_prj.write('"' + line.replace('\n','') +'"' + " \\\n")
+      file_prj.write("\nnosort")
 
 def compile():
    '''
@@ -100,35 +93,36 @@ def compile():
    if not os.path.exists(FILELIST_FILEPATH):
       gen_filelist()
 
-   file_flist     = open(FILELIST_FILEPATH,"r")
-   regen_filelist = ""
-   regen_cnt      = 0
-   for line in file_flist:
-      #remove endline character ("\n")
-      srcfilepath = line[0:-1]
-      filename    = srcfilepath.split('/')[-1].split('.')[0] + ".vdb"
-      genfilepath = WORKLIB_PATH + filename     
+   with open(FILELIST_FILEPATH,"r") as file_flist:
+      regen_filelist = ""
+      regen_cnt      = 0
+      for line in file_flist:
+         #remove endline character ("\n")
+         srcfilepath = line[0:-1]
+         filename    = srcfilepath.split('/')[-1].split('.')[0] + ".vdb"
+         genfilepath = WORKLIB_PATH + filename     
       
-      # Generation not required if a gen file exist and is older than source
-      regen=True
-      if os.path.isfile(genfilepath):
-         if os.path.getmtime(genfilepath)>os.path.getmtime(srcfilepath):
-            regen=False
+         # Generation not required if a gen file exist and is older than source
+         regen=True
+         if os.path.isfile(genfilepath):
+            if os.path.getmtime(genfilepath)>os.path.getmtime(srcfilepath):
+               regen=False
 
-      if (regen):
-         regen_cnt     += 1
-         regen_filelist = regen_filelist + " " + srcfilepath
+         if (regen):
+            regen_cnt     += 1
+            regen_filelist = regen_filelist + " " + srcfilepath
 
    if (regen_cnt>0):
       # File Analysis
       cmd  = "xvhdl"
       cmd += " -relax"                             # Relax strict language rules
       cmd += " -work " + WORKLIB_NAME              # Specify the work library
-      cmd += " -initfile='./../xsim.ini'"          # Library mapping file
+      cmd += " -initfile=../xsim.ini"          # Library mapping file
       cmd += " -log " + log                        # Log filename
       cmd += " " + regen_filelist                  # 
       cmd += "> log/garbage.log"
       flowMsg("INFO", str(regen_cnt) + " .vdb files needs to be regenerated:\n Vivado Anylysis cmd: " + cmd)
+      os.system("pwd")
       os.system(cmd);
 
       # Elaboration
@@ -138,7 +132,7 @@ def compile():
       cmd += " -mt auto"                           # Number of subc-compilation jobs
       cmd += " -L secureip"                        # Specify search libraries for the instantiated non-VHDL design unit
       cmd += " -log log/elaborate.log"             # Log filename
-      cmd += " -initfile='./../xsim.ini'"          # Library mapping file
+      cmd += " -initfile=../xsim.ini"          # Library mapping file
       cmd += " " + WORKLIB_NAME + '.' + TOP_LVL    #
       cmd += "> log/garbage.log"
       flowMsg("INFO","Vivado Elaboration cmd: " +cmd)
@@ -191,7 +185,8 @@ def sim(testname):
    outfiles_dir = "./outfiles/"
    for dir in [infiles_dir, outfiles_dir]:
       if os.path.exists(dir):
-         os.system("rm -rf " + dir + "/*")
+         #os.remove(dir + "/*")
+         os.system("rm -rf " + dir + "*")
       else:
          os.makedirs(dir)
    cmd = "cp -rf " + testdir + "* " + infiles_dir
@@ -210,14 +205,14 @@ def sim(testname):
    if not os.path.isfile(f2compare_fp):
       flowMsg("ERROR","File " + WORKDIR + "/simout_compare_filelist.txt doesn't exist")
    else:
-      f2comp_f_handler = open("../simout_compare_filelist.txt",'r')
-      for f in f2comp_f_handler:
-         filename = f.strip('\n')
-         if (file_compare.f_compare(infiles_dir + filename, outfiles_dir + filename) != 0):
-            flowMsg("ERROR","Mismatch in file " + filename)
-            return -1
-         else:
-            flowMsg("INFO","Check of outfile " + filename + " is OK.")
+      with open("../simout_compare_filelist.txt",'r') as f2comp_f_handler:
+         for f in f2comp_f_handler:
+            filename = f.strip('\n')
+            if (file_compare.f_compare(infiles_dir + filename, outfiles_dir + filename) != 0):
+               flowMsg("ERROR","Mismatch in file " + filename)
+               return -1
+            else:
+               flowMsg("INFO","Check of outfile " + filename + " is OK.")
    return 0
 
 def regression(testlist):
@@ -231,15 +226,15 @@ def regression(testlist):
    #Result directory creation
    dt = datetime.datetime.now()
    regr_dir = "regression_test_rslt_" + str(dt.year) + str(dt.month) + str(dt.day) + '_' + str(dt.hour) + str(dt.minute) + str(dt.second) + '/'
-   os.system("mkdir " + regr_dir)
-   os.system("mkdir " + regr_dir + "failed")
-   os.system("mkdir " + regr_dir + "passed")
-   test_passed_file = open(regr_dir + "passed.txt","w")
-   test_failed_file = open(regr_dir + "failed.txt","w")
+   os.mkdir(regr_dir)
+   os.mkdir(regr_dir + "failed")
+   os.mkdir(regr_dir + "passed")
 
    tests_cnt   = 0
    success_cnt = 0
-   with open(testlist,'r') as file_testlist:
+   with open(testlist,'r')                as file_testlist,    \
+        open(regr_dir + "passed.txt","w") as test_passed_file, \
+        open(regr_dir + "failed.txt","w") as test_failed_file:
       for tn in file_testlist:
          testname    = tn.strip('\n')
          test_passed = (sim(testname)==0)
@@ -252,7 +247,7 @@ def regression(testlist):
             test_failed_file.write(testname)
          test_rslt_dir += testname
 
-         os.system("mkdir " + test_rslt_dir)
+         os.mkdir(test_rslt_dir)
          os.system("cp -rf infiles " + test_rslt_dir + '/')
          os.system("cp -rf outfiles " + test_rslt_dir + '/')
 
@@ -319,22 +314,22 @@ def main(argv):
             snapshot += ('_' + subword)
       else:
          if os.path.isfile('LASTBUILD'):
-            file_lastbuild = open('LASTBUILD',"r")
-            snapshot = file_lastbuild.read().strip('\n')
+            with open('LASTBUILD',"r") as file_lastbuild:
+               snapshot = file_lastbuild.read().strip('\n')
          else:
             snapshot = DEFAULT_SNAPSHOT
    flowMsg("INFO","SNAPSHOT = " + snapshot)
    
    # Directories creation (if necessary)
    genpath = "gen_" + snapshot
-   if not os.path.exists(genpath):
+   if not os.path.exists("./" + genpath):
       flowMsg("INFO", "It's 1st execution (or clean occured), creation of directory: '" + genpath + "'")
-      os.system("mkdir " + genpath)
+      os.mkdir(genpath)
 
    logdir = genpath + "\log"
    if not os.path.exists(logdir):
-      os.system("mkdir " + logdir)
-      os.system("chmod 777 " + logdir)
+      os.mkdir(logdir)
+      os.chmod(logdir,777)
 
    # Command analysis and execution
    if (instr=='clean'):
@@ -364,7 +359,7 @@ def main(argv):
       else:
          flowMsg("ERROR", "Command '" + argv[0] + "' is unknown")
          return 1
-      os.chdir("./..")
+      os.chdir("..")
       flowMsg('INFO',"<--- Ending hwpyflow", msg_rpt=True)
    return 0
 

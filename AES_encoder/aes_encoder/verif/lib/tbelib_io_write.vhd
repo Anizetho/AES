@@ -1,3 +1,7 @@
+
+----------------------------------------------------------------------------------
+
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
@@ -17,32 +21,32 @@ entity tbelib_io_write is
       G_IF_WIDTH  : integer := 16
       );
    port(
-      clock       : in  std_logic;
+      clk       : in  std_logic;
       resetn    : in  std_logic;
 
       wr_valid  : in  std_logic;
       wr_enable : out std_logic;
       wr_eof    : in  std_logic;
-      wr_data   : in  std_logic_vector(f_tbe_io_interface_if_width(G_IF_FORMAT)-1 downto 0)
+      wr_data   : in  std_logic_vector(f_tbe_io_interface_if_width(G_IF_FORMAT)-1 downto 0)     
       );
 end tbelib_io_write;
 
 architecture tb of tbelib_io_write is
    constant C_IF_CHAR_SIZE : integer := f_tbe_io_interface_if_char_size(G_IF_FORMAT);
-
+   
    signal rst           : std_logic;
    signal last          : std_logic;
    signal rd_active_l   : std_logic;
 begin
 
-   p_writefile : process
+   p_writefile : process 
       file     file_handler : text;
       variable out_line     : line;
       variable wdata_bidx   : integer ;
       variable wdata_bidx_n : integer ;
       variable wdata_bwidth : integer ;
    begin
-      wait until rising_edge(clock);
+      wait until rising_edge(clk);
 
       if resetn='0' then
          wr_enable <= '0';
@@ -70,3 +74,5 @@ begin
    end process p_writefile;
    
 end tb;
+
+

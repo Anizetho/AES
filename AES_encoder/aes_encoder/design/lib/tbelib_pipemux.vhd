@@ -8,8 +8,7 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 use IEEE.numeric_std.all;
 
-library WORK;
-use WORK.aes_pkg.ALL;
+
 
 entity tbelib_pipemux is
    generic(

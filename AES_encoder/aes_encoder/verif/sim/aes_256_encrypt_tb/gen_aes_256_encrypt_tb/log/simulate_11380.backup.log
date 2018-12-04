@@ -1,0 +1,18 @@
+#-----------------------------------------------------------
+# xsim v2018.1 (64-bit)
+# SW Build 2188600 on Wed Apr  4 18:40:38 MDT 2018
+# IP Build 2185939 on Wed Apr  4 20:55:05 MDT 2018
+# Start of session at: Tue Dec  4 12:08:44 2018
+# Process ID: 11380
+# Current directory: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb
+# Command line: xsim.exe -log log/simulate.log -mode tcl -source {xsim.dir/mylib.aes_256_encrypt_tb/xsim_script.tcl}
+# Log file: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/log/simulate.log
+# Journal file: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb\xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/mylib.aes_256_encrypt_tb/xsim_script.tcl
+# xsim {mylib.aes_256_encrypt_tb} -autoloadwcfg -tclbatch {cmd.tcl} -key {Behavioral:sim_1:Functional:XXXaes_256_encrypt_tb}
+Vivado Simulator 2018.1
+ERROR: File ./infiles/aes_cipher_rqst.txt could not be opened
+on HDL file C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_io_read.vhd line 42
+ERROR: [Simtcl 6-50] Simulation engine failed to start: The Simulation shut down unexpectedly during initialization.
+Please see the Tcl Console or the Messages for details.

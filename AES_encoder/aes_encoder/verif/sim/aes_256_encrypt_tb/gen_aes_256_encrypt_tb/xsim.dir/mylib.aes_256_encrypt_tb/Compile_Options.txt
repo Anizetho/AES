@@ -1,0 +1,1 @@
+-relax -debug "typical" -mt "auto" -L "secureip" -log "log/elaborate.log" -initfile "../xsim.ini" "mylib.aes_256_encrypt_tb" 
