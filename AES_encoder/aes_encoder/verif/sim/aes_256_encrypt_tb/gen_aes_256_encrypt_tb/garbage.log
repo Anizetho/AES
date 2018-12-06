@@ -24,7 +24,7 @@ INFO: [Simtcl 6-17] Simulation restarted
 WARNING: [Simtcl 6-197] One or more HDL objects could not be logged because of object type or size limitations.  To see details please rerun the command with -verbose (-v).
 ## run -all
 Failure: End of Simulation(SUCCESS: End Of File)
-Time: 3700 ns  Iteration: 0  Process: /aes_256_encrypt_tb/i_aes_256_encrypt_stim/i_tbelib_sim_controller/p_no_activity_cnt  File: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd
-$finish called at time : 3700 ns : File "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd" Line 42
+Time: 118160 ns  Iteration: 0  Process: /aes_256_encrypt_tb/i_aes_256_encrypt_stim/i_tbelib_sim_controller/p_no_activity_cnt  File: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd
+$finish called at time : 118160 ns : File "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd" Line 42
 ## quit
-INFO: [Common 17-206] Exiting xsim at Tue Dec  4 12:32:13 2018...
+INFO: [Common 17-206] Exiting xsim at Thu Dec  6 18:15:34 2018...

@@ -2,13 +2,13 @@
 # Webtalk v2018.1 (64-bit)
 # SW Build 2188600 on Wed Apr  4 18:40:38 MDT 2018
 # IP Build 2185939 on Wed Apr  4 20:55:05 MDT 2018
-# Start of session at: Tue Dec  4 10:51:36 2018
-# Process ID: 2920
+# Start of session at: Thu Dec  6 18:15:30 2018
+# Process ID: 10420
 # Current directory: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb
 # Command line: wbtcv.exe -mode batch -source C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/xsim.dir/mylib.aes_256_encrypt_tb/webtalk/xsim_webtalk.tcl -notrace
 # Log file: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/webtalk.log
 # Journal file: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb\webtalk.jou
 #-----------------------------------------------------------
 source C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/xsim.dir/mylib.aes_256_encrypt_tb/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-186] 'C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/xsim.dir/mylib.aes_256_encrypt_tb/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Tue Dec  4 10:51:38 2018. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/Vivado/2018.1/doc/webtalk_introduction.html.
-INFO: [Common 17-206] Exiting Webtalk at Tue Dec  4 10:51:38 2018...
+INFO: [Common 17-186] 'C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/xsim.dir/mylib.aes_256_encrypt_tb/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Thu Dec  6 18:15:33 2018. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/Vivado/2018.1/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Thu Dec  6 18:15:33 2018...

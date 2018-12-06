@@ -1,1 +1,0 @@
-open_wave_database mylib.aes_256_encrypt_tb.wdb
