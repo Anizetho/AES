@@ -1,256 +1,237 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    21:21:19 05/07/2018 
+-- Design Name: 
+-- Module Name:    aes_256 - Behavioral 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.STD_LOGIC_unsigned.ALL;
 
 library work;
 use work.aes_256_package.all;
 
-entity aes_256_encrypt IS
-    port ( 	clock, resetn : in  STD_LOGIC;
-			start : in  STD_LOGIC;
-			plaintext : in  STD_LOGIC_VECTOR (127 downto 0);
-			key_256 : in  STD_LOGIC_VECTOR (255 downto 0);
-			ciphertext : out  STD_LOGIC_VECTOR (127 downto 0);
-			done : out std_logic);
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity aes_256_encrypt is
+
+port ( 	
+		clk 			: in  std_logic;
+		rst 			: in  std_logic;
+		start 		: in  std_logic;
+		plaintext 	: in  std_logic_vector(127 downto 0);
+		key	 		: in  std_logic_vector(255 downto 0);
+		ciphertext 	: out std_logic_vector(127 downto 0);
+		done 			: out std_logic
+			);
 end aes_256_encrypt;
 
-architecture behavioral of aes_256_encrypt IS
+architecture Behavioral of aes_256_encrypt is
 
-component key_scheduler_256
-	port(
-			clock : in  STD_LOGIC;
-			resetn : in  STD_LOGIC;
-			en : in STD_LOGIC;
-			key_256 : in  STD_LOGIC_VECTOR (255 downto 0);
-			round : in STD_LOGIC_VECTOR(2 downto 0);
-			round_key : out STD_LOGIC_VECTOR (255 downto 0));
-end component;
+component top_key_scheduler_256
+    port ( 	clk 		: in  std_logic;
+			rst 		: in  std_logic;
+			start 		: in  std_logic;
+			key_256 	: in  std_logic_vector(255 downto 0);
+			keyExpanded : out keyExpand;
+			done 		: out std_logic);
+end component top_key_scheduler_256;
 
 component add_round_key
 	port(
-		clock : in STD_LOGIC;
-		resetn : in STD_LOGIC;
-		en : in STD_LOGIC;
-		state : in STD_LOGIC_VECTOR(127 downto 0);
-		round_key : in  STD_LOGIC_VECTOR (127 downto 0);
-		result : out STD_LOGIC_VECTOR(127 downto 0));
+		clock 		: in  std_logic;
+		reset 		: in  std_logic;
+		en 			: in  std_logic;
+		state 		: in  std_logic_vector(127 downto 0);
+		round_key 	: in  std_logic_vector(127 downto 0);		
+		result 		: out std_logic_vector(127 downto 0));
 end component;
 
 component sub_byte
 	port(
-		clock : in STD_LOGIC;
-		resetn : in STD_LOGIC;
-		en : in STD_LOGIC;
-		state : in STD_LOGIC_VECTOR(127 downto 0);
-		result : out STD_LOGIC_VECTOR(127 downto 0));
+		clock 	: in  std_logic;
+		reset 	: in  std_logic;
+		en 		: in  std_logic;
+		state 	: in  std_logic_vector(127 downto 0);          
+		result 	: out std_logic_vector(127 downto 0));
 end component;
 
 component shift_rows
 	port(
-		clock : in STD_LOGIC;
-		resetn : in STD_LOGIC;
-		en : in STD_LOGIC;
-		state : in STD_LOGIC_VECTOR(127 downto 0);
-		result : out STD_LOGIC_VECTOR(127 downto 0));
+		clock 	: in std_logic;
+		reset 	: in std_logic;
+		en 		: in std_logic;
+		state 	: in std_logic_vector(127 downto 0);          
+		result 	: out std_logic_vector(127 downto 0));
 end component;
 
 component mix_column
 	port(
-		clock : in STD_LOGIC;
-		resetn : in STD_LOGIC;
-		en : in STD_LOGIC;
-		state : in STD_LOGIC_VECTOR(127 downto 0);
-		result : out STD_LOGIC_VECTOR(127 downto 0));
+		clock 	: in  std_logic;
+		reset 	: in  std_logic;
+		en 		: in  std_logic;
+		state 	: in  std_logic_vector(127 downto 0);          
+		result 	: out std_logic_vector(127 downto 0));
 end component;
 
-signal round_key : STD_LOGIC_VECTOR (127 downto 0);
-signal round_key_256 : STD_LOGIC_VECTOR (255 downto 0);
-signal round_key_out : STD_LOGIC_VECTOR (255 downto 0);
-signal round : STD_LOGIC_VECTOR (3 downto 0);
-signal round_half : STD_LOGIC_VECTOR (2 downto 0);
-signal step : STD_LOGIC_VECTOR (1 downto 0);
-signal sel_data : STD_LOGIC_VECTOR (1 downto 0);
-signal A : STD_LOGIC_VECTOR (127 downto 0);
-signal B : STD_LOGIC_VECTOR (127 downto 0);
-signal C : STD_LOGIC_VECTOR (127 downto 0);
-signal D : STD_LOGIC_VECTOR (127 downto 0);
-signal E : STD_LOGIC_VECTOR (127 downto 0);
-signal ciphertext_buffer : STD_LOGIC_VECTOR (127 downto 0);
-signal done_buffer : STD_LOGIC;
+type state is (IDLE, STORE_RK, MROUNDS, LROUND);
+signal cstate               : state;
 
-type state is (S_RESET, IDLE, PROCESSING, S_DONE);
-signal curr_state,next_state : state ;
+signal ark_in 		        : std_logic_vector(127 downto 0);
+signal ark_sbox 	        : std_logic_vector(127 downto 0);
+signal sbox_shift           : std_logic_vector(127 downto 0);
+signal shift_mix 	        : std_logic_vector(127 downto 0);
+signal mix_out 	            : std_logic_vector(127 downto 0);
+
+signal count_round 	        : std_logic_vector(3 downto 0);
+signal count_op 	        : std_logic_vector(1 downto 0);
+signal sel_ark_in 	        : std_logic_vector(1 downto 0);
+
+signal round_key 	        : std_logic_vector(127 downto 0);
+
+signal en_block 		    : std_logic_vector(3 downto 0);
+signal done_schedule 	    : std_logic;
+signal alm_done_schedule    : std_logic;
+signal enable_key_schedule 	: std_logic;
+signal keyExpanded	  		: keyExpand;
+
 
 begin
 
-	 with 	sel_data select
-			A <= 	plaintext when "00",
-					E when "01",
-					D when "10",
-					X"00000000000000000000000000000000" when others;
-
-	 with 	round(0) select
-			round_key <=	round_key_256(255 downto 128) when '0',
-							round_key_256(127 downto 0) when '1',
-							X"00000000000000000000000000000000" when others;
-
-	key_scheduler_256_instance : key_scheduler_256 port map (
-			clock => clock,
-			resetn => resetn,
-			en => round(0),
-			key_256 => round_key_256,
-			round => round_half,
-			round_key => round_key_out);
-
 	add_round_key_instance : add_round_key port map(
-			clock => clock,
-			resetn => resetn,
-			en => '1',
-			state => A,
+			clock => clk,
+			reset => rst,
+			en => en_block(3),
 			round_key => round_key,
-			result => B);
-
+			state => ark_in,			
+			result => ark_sbox);
+			
 	sub_byte_instance : sub_byte port map (
-			clock => clock,
-			resetn => resetn,
-			en => '1',
-			state =>  B,
-			result => C);
-
+			clock => clk,
+			reset => rst,
+			en => en_block(2),
+			state =>  ark_sbox,        
+			result => sbox_shift);
+		
 	shift_rows_instance : shift_rows port map (
-			clock => clock,
-			resetn => resetn,
-			en => '1',
-			state => C,
-			result => D);
-
+			clock => clk,
+			reset => rst,
+			en => en_block(1),
+			state => sbox_shift,      
+			result => shift_mix);
+			
 	mix_column_instance : mix_column port map (
-			clock => clock,
-			resetn => resetn,
-			en => '1',
-			state => D,
-			result => E);
+			clock => clk,
+			reset => rst,
+			en => en_block(0),
+			state => shift_mix,     
+			result => mix_out);
+			
+	top_key_scheduler_256_instance : top_key_scheduler_256 port map (
+		clk => clk,
+		rst => rst,
+		start => start,
+		key_256 =>  key,
+		keyExpanded => keyExpanded,
+		done => done_schedule);
 
-	process (clock, key_256) -- Counter Steps/Rounds
-	begin
-	if rising_edge(clock) then
-		if resetn = '1' then
-			step <= "11";
-			round <= (others => '0');
-			round_half <= (others => '0');
-			round_key_256 <= key_256;
-		else
-			if curr_state = PROCESSING then
-				if step = "11" then
-					step <= (others => '0');
-					round <= round + '1';
-					if round(0) = '1'  then
-						round_key_256 <= round_key_out;
-						if round_half < "110" then
-							round_half <= round_half + '1';
-						else
-							round_half <= round_half;
-						end if;
-					end if;
-				else
-					step <= step + '1';
-				end if;
-			else
-				step <= "11";
-				round <= (others => '0');
-				round_half <= (others => '0');
-				round_key_256 <= key_256;
-			end if;
-		end if;
-	end if;
-	end process;
-
-	process (clock) -- Controller Mux Data State
-	begin
-	if rising_edge(clock) then
-		if resetn = '1' then
-			sel_data <= (others => '0');
-		else
-			if round = "0000" then
-				sel_data <= "00";
-			elsif round = "1110" AND step = "01" then
-				sel_data <= "10";
-			else
-				sel_data <= "01";
-			end if;
-		end if;
-	end if;
-	end process;
-
-	-- process (clock, reset) -- Output Data
-	-- begin
-		-- if curr_state <= RESET then
-			-- ciphertext <= (others => '0');
-			-- done <= '0';
-		-- ELSif (clock'event AND clock = '1') then
-			-- if curr_state = DONE then
-				-- ciphertext <= B;
-				-- done <= '1';
-			-- end if;
-		-- end if;
-	-- end process;
-
-	process (clock) ----State Machine Master Control
-	begin
-	if rising_edge(clock) then
-		if resetn = '1' then
-			curr_state <= S_RESET;
-		else
-			curr_state <= next_state;
-		end if;
-	end if;
-	end process;
-
-	process (curr_state, start, round, step, B, ciphertext_buffer) ---State Machine State Definitions
-	begin
-		case curr_state is
-			when S_RESET =>
-				ciphertext_buffer <= (others => '0');
-				next_state <= IDLE;
-				done_buffer <= '0';
-			when IDLE =>
-				next_state <= IDLE;
-				ciphertext_buffer <= (others => '0');
-				done_buffer <= '0';
-				if (start = '1') then
-					next_state <= PROCESSING;
-				end if;
-			when PROCESSING =>
-				next_state <= PROCESSING;
-				ciphertext_buffer <= (others => '0');
-				done_buffer <= '0';
-				if (step = "10" AND  round = "1110") then
-					next_state <= S_DONE;
-				end if;
-			when S_DONE =>
-				ciphertext_buffer <= B;
-				done_buffer <= '1';
-				next_state <= IDLE;
-			when others =>  next_state <= IDLE;
-							done_buffer <= '0';
-							ciphertext_buffer <= (others => '0');
-		end case;
-	end process;
-
-	process (clock)
-	begin
-	if rising_edge(clock) then
-		if resetn = '1' then
-			ciphertext <= (others => '0');
-			done <= '0';
-		else
-			if curr_state = S_DONE then
-				ciphertext <= ciphertext_buffer;
-			end if;
-			done <= done_buffer;
-		end if;
-	end if;
-	end process;
 	
-end behavioral;
+	with 	count_round(0) select
+		round_key <= 	keyExpanded(conv_integer(count_round(3 downto 1)))(255 downto 128) when '0',
+						keyExpanded(conv_integer(count_round(3 downto 1)))(127 downto 0) when '1',
+						(others => '0') when others;
+	
+	with 	sel_ark_in select
+			ark_in <= 	plaintext 			when "00",
+							mix_out 				when "01",
+							shift_mix 			when "10",
+							(others => '0') 	when others;
+	
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			if rst = '1' then
+				cstate 		<= IDLE;
+				ciphertext  <= (others => '0');
+				count_round <= (others => '0');
+				count_op 	<= (others => '1');
+				done 			<= '0';
+				en_block 	<= (others => '0');
+				sel_ark_in  <= (others => '0');
+			else
+				case cstate is
+					when 			IDLE 	=> 	cstate <= IDLE;
+													done <= '0';
+													sel_ark_in <= (others => '0');
+													if start = '1' then
+														cstate <= STORE_RK;
+													-- elsif start = '1' then
+														-- cstate <= MROUNDS;
+														-- en_block <= "1000";														
+													end if;													
+					when 		STORE_RK => cstate <= STORE_RK;
+												if done_schedule = '1' then
+													cstate <= MROUNDS;
+													en_block <= "1000";
+												end if;		
+					
+					when 		MROUNDS 	=>		cstate <= MROUNDS;
+													if en_block(0) = '1' then
+														en_block <= "1000";
+													else
+														en_block <= '0' & en_block(3 downto 1);
+													end if;
+													count_op <= count_op + 1;
+													sel_ark_in <= "01";
+													if count_op = 3 then
+														count_op 	<= (others => '0');
+														count_round <= count_round + 1;
+														if count_round = 13 then
+															sel_ark_in <= "10";
+															cstate <= LROUND;
+														end if;
+													end if;	
+													
+					when 	LROUND 	=>			count_op <= count_op + 1;
+													if en_block(1) = '1' then
+														en_block <= "1000";
+													else
+														en_block <= '0' & en_block(3 downto 1);
+													end if;
+													if count_op = 3 then
+														ciphertext <= ark_sbox;
+														count_round <= (others => '0');
+														count_op <= (others => '1');
+														cstate <= IDLE;
+														done <= '1';
+														sel_ark_in <= (others => '0');
+													end if;
+					when others =>				cstate <= IDLE;
+				end case;
+			end if;
+		end if;
+	end process;
+
+
+end Behavioral;
+

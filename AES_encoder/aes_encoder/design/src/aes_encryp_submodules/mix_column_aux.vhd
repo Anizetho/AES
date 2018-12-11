@@ -5,7 +5,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use work.aes_256_package.all;
 
 entity mix_column_aux is
-    port ( 	clock, resetn, en : in  STD_LOGIC;
+    port ( 	clock, reset, en : in  STD_LOGIC;
 			column : in  STD_LOGIC_VECTOR (31 downto 0);
 			result : out  STD_LOGIC_VECTOR (31 downto 0));
 end mix_column_aux;
@@ -38,7 +38,7 @@ begin
 	process(clock)
 	begin
 	if rising_edge(clock) then
-		if resetn = '1' then
+		if reset = '1' then
 			result <= (others => '0');
 		else
 			if en = '1' then

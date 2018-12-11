@@ -8,19 +8,15 @@ use work.tbelib_io_pack.all;
 
 package aes_cipher_io_pack is
 
-constant C_RESULT_IF_FORMAT : t_tbe_io_interface_format(0 to 1) :=(
+constant C_RESULT_IF_FORMAT : t_tbe_io_interface_format(0 to 0) :=(
 
 0 => (PORT_NAME  => "ciphtxt",
       PORT_WIDTH => 128
-      --CHAR_TYPE  => BIN,
-      --CHAR_SIZE  => 1
-     ),
-
-1 => (PORT_NAME  => "EncMode",
-      PORT_WIDTH => 2
-      --CHAR_TYPE  => BIN,
-      --CHAR_SIZE  => 1
      )
+
+--1 => (PORT_NAME  => "EncMode",
+--      PORT_WIDTH => 2
+--     )
 );
 
 end aes_cipher_io_pack;

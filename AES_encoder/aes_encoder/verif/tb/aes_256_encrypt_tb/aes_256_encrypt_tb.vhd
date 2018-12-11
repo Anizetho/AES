@@ -32,11 +32,11 @@ architecture behavioral of aes_256_encrypt_tb IS
 
 	component aes_256_encrypt_stim is
     port(
-      clock   : out  STD_LOGIC;
-      resetn  : out  STD_LOGIC;
+        clock   : out  STD_LOGIC;
+        resetn  : out  STD_LOGIC;
 
-      aes_cipher_valid     : out  STD_LOGIC;
-      aes_cipher_enable    : in  STD_LOGIC;
+        aes_cipher_valid     : out  STD_LOGIC;
+        aes_cipher_enable    : in  STD_LOGIC;
 		aes_cipher_key       : out  STD_LOGIC_VECTOR (255 downto 0);
 		aes_cipher_plaintext : out  STD_LOGIC_VECTOR (127 downto 0);
 		aes_cipher_mode      : out std_logic_vector (1 downto 0);
@@ -47,28 +47,28 @@ architecture behavioral of aes_256_encrypt_tb IS
 		);
 	end component;
 
-    signal clock : STD_LOGIC;
-    signal resetn : STD_LOGIC;
-    signal aes_enable: STD_LOGIC;
-	 signal aes_valid : STD_LOGIC ;
-	 signal aes_key : STD_LOGIC_VECTOR (255 downto 0);
-	 signal aes_plaintext  : STD_LOGIC_VECTOR (127 downto 0);
-	 signal aes_ciphertext : STD_LOGIC_VECTOR(127 downto 0);
-	 signal aes_cipher_valid     : STD_LOGIC;
+    signal clock                : STD_LOGIC;
+    signal resetn               : STD_LOGIC;
+    signal aes_enable           : STD_LOGIC;
+	signal aes_valid            : STD_LOGIC ;
+	signal aes_key              : STD_LOGIC_VECTOR (255 downto 0);
+	signal aes_plaintext        : STD_LOGIC_VECTOR (127 downto 0);
+	signal aes_ciphertext       : STD_LOGIC_VECTOR(127 downto 0);
+	signal aes_cipher_valid     : STD_LOGIC;
     signal aes_cipher_enable    : STD_LOGIC;
-	 signal aes_cipher_key       : STD_LOGIC_VECTOR (255 downto 0);
-	 signal aes_cipher_plaintext : STD_LOGIC_VECTOR (127 downto 0);
-	 signal aes_cipher_mode      : std_logic_vector (1 downto 0);
+	signal aes_cipher_key       : STD_LOGIC_VECTOR (255 downto 0);
+	signal aes_cipher_plaintext : STD_LOGIC_VECTOR (127 downto 0);
+	signal aes_cipher_mode      : std_logic_vector (1 downto 0);
 
- 	 signal aes_rtn_valid        : std_logic;
-	 signal aes_rtn_enable       : std_logic;
-	 signal aes_rtn_ciphertext   : STD_LOGIC_VECTOR(127 downto 0);
+ 	signal aes_rtn_valid        : std_logic;
+	signal aes_rtn_enable       : std_logic;
+	signal aes_rtn_ciphertext   : STD_LOGIC_VECTOR(127 downto 0);
 
 begin
     i_aes_encrypt_wrapper : aes_encrypt_wrapper
     port map (
-         clock        => clock,
-         resetn     => resetn,
+         clock                  => clock,
+         resetn                 => resetn,
 
 		 aes_cipher_valid       => aes_cipher_valid,
          aes_cipher_enable      => aes_cipher_enable,
@@ -83,8 +83,8 @@ begin
 
     i_aes_256_encrypt_stim : aes_256_encrypt_stim
     port map(
-         clock        => clock,
-         resetn     => resetn,
+         clock                  => clock,
+         resetn                 => resetn,
 
 		 aes_cipher_valid       => aes_cipher_valid,
          aes_cipher_enable      => aes_cipher_enable,

@@ -8,7 +8,7 @@ use work.tbelib_io_pack.all;
 
 package aes_encrypt_io_pack is
 
-constant C_ENCRYPT_RQST_IF_FORMAT : t_tbe_io_interface_format(0 to 2) :=(
+constant C_ENCRYPT_RQST_IF_FORMAT : t_tbe_io_interface_format(0 to 1) :=(
 
 0 => (PORT_NAME  => "plaintx",
       PORT_WIDTH => 128
@@ -20,13 +20,13 @@ constant C_ENCRYPT_RQST_IF_FORMAT : t_tbe_io_interface_format(0 to 2) :=(
       PORT_WIDTH => 256
       --CHAR_TYPE  => HEX,
       --CHAR_SIZE  => 64
-     ),
-
-2 => (PORT_NAME  => "EncMode",
-      PORT_WIDTH => 2
-      --CHAR_TYPE  => BIN,
-      --CHAR_SIZE  => 1
      )
+
+--2 => (PORT_NAME  => "EncMode",
+--      PORT_WIDTH => 2
+--      --CHAR_TYPE  => BIN,
+--      --CHAR_SIZE  => 1
+--     )
 );
 
 end aes_encrypt_io_pack;

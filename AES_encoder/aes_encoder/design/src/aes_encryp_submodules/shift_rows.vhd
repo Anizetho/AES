@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity shift_rows is
-    port ( 	clock, resetn, en : in  STD_LOGIC;
+    port ( 	clock, reset, en : in  STD_LOGIC;
 			state : in  STD_LOGIC_VECTOR (127 downto 0);
 			result : out  STD_LOGIC_VECTOR (127 downto 0));
 end shift_rows;
@@ -16,7 +16,7 @@ begin
 	process(clock)
 	begin
 	if rising_edge(clock) then
-		IF resetn = '1' then
+		IF reset = '1' then
 			result <= (others => '0');
 		else
 			IF en = '1' then

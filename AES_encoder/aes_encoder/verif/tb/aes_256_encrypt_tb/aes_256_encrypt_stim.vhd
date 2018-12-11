@@ -12,17 +12,17 @@ use work.aes_encrypt_io_pack.all;
 
 entity aes_256_encrypt_stim IS
     port(
-        clock   : out  STD_LOGIC;
-        resetn : out  STD_LOGIC;
+        clock                : out  STD_LOGIC;
+        resetn               : out  STD_LOGIC;
 
-        aes_cipher_valid     : out  STD_LOGIC;
-        aes_cipher_enable    : in  STD_LOGIC;
 		aes_cipher_key       : out  STD_LOGIC_VECTOR (255 downto 0);
 		aes_cipher_plaintext : out  STD_LOGIC_VECTOR (127 downto 0);
 		aes_cipher_mode      : out std_logic_vector (1 downto 0);
+        aes_cipher_valid     : out  STD_LOGIC;
+        aes_cipher_enable    : in  STD_LOGIC;
 
-		aes_rtn_valid        : in std_logic;
 		aes_rtn_enable       : out  std_logic;
+		aes_rtn_valid        : in std_logic;
 		aes_rtn_ciphertext   : in STD_LOGIC_VECTOR(127 downto 0)
 		);
 end aes_256_encrypt_stim;
@@ -50,7 +50,6 @@ architecture behavioral of aes_256_encrypt_stim IS
         generic(
             G_FILE        : string := "output.txt";
             G_IF_FORMAT   : t_tbe_io_interface_format
-            --G_IF_WIDTH  : integer := 16
             );
         port(
             clk       : in  std_logic;
@@ -74,8 +73,8 @@ architecture behavioral of aes_256_encrypt_stim IS
         );
     end component;
 
-    signal clk_l    : std_logic := '1';
-    signal resetn_l : std_logic := '0';
+    signal clk_l              : std_logic := '1';
+    signal resetn_l           : std_logic := '0';
 
     signal rd_rqst_data       : std_logic_vector( f_tbe_io_interface_if_width(C_ENCRYPT_RQST_IF_FORMAT)-1 downto 0);
     signal wr_rqst_cipher     : std_logic_vector( f_tbe_io_interface_if_width(C_RESULT_IF_FORMAT)-1 downto 0);
@@ -92,7 +91,7 @@ architecture behavioral of aes_256_encrypt_stim IS
 
 begin
     clk_l    <= not clk_l after 10 ns;
-    clock      <= clk_l;
+    clock    <= clk_l;
 
     resetn_l <= '1' after 110 ns;
     resetn   <= resetn_l;
@@ -112,17 +111,17 @@ begin
 
     rqst_capture <= aes_cipher_valid_l and aes_rtn_enable_l;
 
-    aes_cipher_key <= f_tbe_io_interface_getPort (in_if=> rd_rqst_data,
-                                        p_idx    => 1,
-                                        if_format => C_ENCRYPT_RQST_IF_FORMAT);
-
     aes_cipher_plaintext <= f_tbe_io_interface_getPort (in_if=> rd_rqst_data,
                                         p_idx    => 0,
                                         if_format => C_ENCRYPT_RQST_IF_FORMAT);
 
-    aes_cipher_mode <= f_tbe_io_interface_getPort (in_if=> rd_rqst_data,
-                                        p_idx    => 2,
+    aes_cipher_key <= f_tbe_io_interface_getPort (in_if=> rd_rqst_data,
+                                        p_idx    => 1,
                                         if_format => C_ENCRYPT_RQST_IF_FORMAT);
+
+    --aes_cipher_mode <= f_tbe_io_interface_getPort (in_if=> rd_rqst_data,
+    --                                    p_idx    => 2,
+    --                                    if_format => C_ENCRYPT_RQST_IF_FORMAT);
 
     i_tbelib_io_read_rqst : tbelib_io_read
     generic map(
@@ -139,7 +138,7 @@ begin
             );
 
     aes_cipher_valid    <= aes_cipher_valid_l;
-    wr_rqst_cipher      <= "00" &  aes_rtn_ciphertext ;
+    wr_rqst_cipher      <= aes_rtn_ciphertext ;
 
     i_tbelib_io_write_ciphertext : tbelib_io_write
         generic map(

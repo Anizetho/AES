@@ -21,12 +21,13 @@ Compiling package ieee.std_logic_textio
 Compiling package mylib.tbelib_io_pack
 Compiling package mylib.aes_cipher_io_pack
 Compiling package mylib.aes_encrypt_io_pack
-Compiling architecture behavioral of entity mylib.key_scheduler_256 [key_scheduler_256_default]
 Compiling architecture behavioral of entity mylib.add_round_key [add_round_key_default]
 Compiling architecture behavioral of entity mylib.sub_byte [sub_byte_default]
 Compiling architecture behavioral of entity mylib.shift_rows [shift_rows_default]
 Compiling architecture behavioral of entity mylib.mix_column_aux [mix_column_aux_default]
 Compiling architecture behavioral of entity mylib.mix_column [mix_column_default]
+Compiling architecture behavioral of entity mylib.key_scheduler_256 [key_scheduler_256_default]
+Compiling architecture behavioral of entity mylib.top_key_scheduler_256 [top_key_scheduler_256_default]
 Compiling architecture behavioral of entity mylib.aes_256_encrypt [aes_256_encrypt_default]
 Compiling architecture behavioral of entity mylib.aes_encrypt_wrapper [aes_encrypt_wrapper_default]
 Compiling architecture tb of entity mylib.tbelib_sim_controller [tbelib_sim_controller_default]

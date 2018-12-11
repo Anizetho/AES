@@ -21,12 +21,13 @@ Compiling package ieee.std_logic_textio
 Compiling package mylib.tbelib_io_pack
 Compiling package mylib.aes_cipher_io_pack
 Compiling package mylib.aes_encrypt_io_pack
-Compiling architecture behavioral of entity mylib.key_scheduler_256 [key_scheduler_256_default]
 Compiling architecture behavioral of entity mylib.add_round_key [add_round_key_default]
 Compiling architecture behavioral of entity mylib.sub_byte [sub_byte_default]
 Compiling architecture behavioral of entity mylib.shift_rows [shift_rows_default]
 Compiling architecture behavioral of entity mylib.mix_column_aux [mix_column_aux_default]
 Compiling architecture behavioral of entity mylib.mix_column [mix_column_default]
+Compiling architecture behavioral of entity mylib.key_scheduler_256 [key_scheduler_256_default]
+Compiling architecture behavioral of entity mylib.top_key_scheduler_256 [top_key_scheduler_256_default]
 Compiling architecture behavioral of entity mylib.aes_256_encrypt [aes_256_encrypt_default]
 Compiling architecture behavioral of entity mylib.aes_encrypt_wrapper [aes_encrypt_wrapper_default]
 Compiling architecture tb of entity mylib.tbelib_sim_controller [tbelib_sim_controller_default]
@@ -42,5 +43,5 @@ Built simulation snapshot mylib.aes_256_encrypt_tb
     ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 
 source C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/xsim.dir/mylib.aes_256_encrypt_tb/webtalk/xsim_webtalk.tcl -notrace
-INFO: [Common 17-186] 'C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/xsim.dir/mylib.aes_256_encrypt_tb/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Thu Dec  6 18:14:58 2018. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/Vivado/2018.1/doc/webtalk_introduction.html.
-INFO: [Common 17-206] Exiting Webtalk at Thu Dec  6 18:14:58 2018...
+INFO: [Common 17-186] 'C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/xsim.dir/mylib.aes_256_encrypt_tb/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Tue Dec 11 14:26:24 2018. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/Vivado/2018.1/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Tue Dec 11 14:26:24 2018...

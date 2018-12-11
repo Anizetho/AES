@@ -11,12 +11,7 @@ def main(argv):
    args = ""
    for arg in argv:
       args += (' ' + arg)
-   #cmd = "python27 " + PRJ_DIR_PATH + FLOW_SCRIPT_DIR + "flow.py " + args
-   print("START")
    cmd = "python " + "../../../" + FLOW_SCRIPT_DIR + "flow.py " + args
-   print("END")
-   print(cmd)
    os.system(cmd)
 
-print("ROOT")
 main(sys.argv[1:])

@@ -23,6 +23,8 @@ INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES
 INFO: [VRFC 10-307] analyzing entity shift_rows
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/sub_byte.vhd" into library mylib
 INFO: [VRFC 10-307] analyzing entity sub_byte
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/design/src/aes_encryp_submodules/top_key_scheduler_256.vhd" into library mylib
+INFO: [VRFC 10-307] analyzing entity top_key_scheduler_256
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/pkg/tbelib_io_pack.vhd" into library mylib
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_io_read.vhd" into library mylib
 INFO: [VRFC 10-307] analyzing entity tbelib_io_read

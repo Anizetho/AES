@@ -1,7 +1,3 @@
-
-----------------------------------------------------------------------------------
-
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
@@ -56,7 +52,7 @@ begin
          rd_valid     <= '0';
          rst          <= '1';
          last         <= '0';
-         rd_active_l    <= '1';
+         rd_active_l  <= '1';
          rd_data      <= (others => 'U');
       elsif (rst='1' or rd_enable='1') then
          rst          <= '0';

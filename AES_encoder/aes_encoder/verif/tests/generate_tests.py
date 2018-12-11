@@ -3,7 +3,7 @@ import time
 
 # To generate tests
 # Can be modify by user
-file_test       = "ECBMCT256.rsp"
+file_test       = "ECBVarKey256.rsp"
 file_test_rqst  = "aes_cipher_rqst.txt"
 file_test_rtn   = "aes_cipher_rtn.txt"
 pathsrc         = "test_ECB"
@@ -13,15 +13,6 @@ pathdest        = "test_cipher_256_ECB"
 pathsrcfile_test = pathsrc + '/' + file_test
 pathdestfile_test_rqst = pathdest + '/' + file_test_rqst
 pathdestfile_test_rtn = pathdest + '/' + file_test_rtn
-
-# To generate file_test_rqst and file_test_rtn
-def generate(path, nb_tests, newlinefile, i):
-    with open(str(path), "w") as file :
-
-        while i<nb_tests:
-            file.write(newlinefile + '\n')
-            i=i+1
-        file.close()
 
 
 # To create directories (if necessary)
@@ -41,7 +32,7 @@ if os.path.exists(pathsrcfile_test) & os.path.exists(pathdest):
         key_lines = [''] * nb_data
         i=0
         while i< nb_data:
-            key_lines[i] = lines[k]
+            key_lines[i] = lines[k].upper()
             k = k + 5
             i = i + 1
 
@@ -50,7 +41,7 @@ if os.path.exists(pathsrcfile_test) & os.path.exists(pathdest):
         p = kstart + 1 # p start
         i = 0
         while i < nb_data:
-            plaintext_lines[i] = lines[p]
+            plaintext_lines[i] = lines[p].upper()
             p = p + 5
             i = i + 1
 
@@ -59,7 +50,7 @@ if os.path.exists(pathsrcfile_test) & os.path.exists(pathdest):
         c = kstart + 2 # c start
         i = 0
         while i < nb_data:
-            ciphertext_lines[i] = lines[c]
+            ciphertext_lines[i] = lines[c].upper()
             c = c + 5
             i = i + 1
         file.close()
@@ -69,7 +60,7 @@ if os.path.exists(pathsrcfile_test) & os.path.exists(pathdest):
         nb_tests = nb_data
         i=0
         while i<nb_tests:
-            file.write(plaintext_lines[i][12:44] + ' ' + key_lines[i][6:70] + ' 3' + '\n')
+            file.write(plaintext_lines[i][12:44] + ' ' + key_lines[i][6:70] + '\n')
             i=i+1
         file.close()
 
@@ -78,7 +69,7 @@ if os.path.exists(pathsrcfile_test) & os.path.exists(pathdest):
         nb_tests = nb_data
         i=0
         while i<nb_tests:
-            file.write(ciphertext_lines[i][13:45] + ' 0' + '\n')
+            file.write(ciphertext_lines[i][13:45] + '\n')
             i=i+1
         file.close()
 

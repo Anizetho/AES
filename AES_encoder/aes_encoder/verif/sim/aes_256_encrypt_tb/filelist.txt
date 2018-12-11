@@ -11,6 +11,7 @@ C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/design/src/aes_e
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/design/src/aes_encryp_submodules/mix_column_aux.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/design/src/aes_encryp_submodules/shift_rows.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/design/src/aes_encryp_submodules/sub_byte.vhd
+C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/design/src/aes_encryp_submodules/top_key_scheduler_256.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/pkg/tbelib_io_pack.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/tbelib_io_read.vhd
 C:\Users\Anizetho\Documents\PyCharm\AES\AES_encoder\aes_encoder/verif/lib/tbelib_io_write.vhd
