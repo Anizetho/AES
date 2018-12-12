@@ -2,8 +2,8 @@
 # xsim v2018.1 (64-bit)
 # SW Build 2188600 on Wed Apr  4 18:40:38 MDT 2018
 # IP Build 2185939 on Wed Apr  4 20:55:05 MDT 2018
-# Start of session at: Tue Dec 11 21:20:05 2018
-# Process ID: 14028
+# Start of session at: Tue Dec 11 21:17:28 2018
+# Process ID: 12100
 # Current directory: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb
 # Command line: xsim.exe -log log/simulate.log -mode tcl -source {xsim.dir/mylib.aes_256_encrypt_tb/xsim_script.tcl}
 # Log file: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/sim/aes_256_encrypt_tb/gen_aes_256_encrypt_tb/log/simulate.log
@@ -29,7 +29,7 @@ INFO: [Simtcl 6-17] Simulation restarted
 WARNING: [Simtcl 6-197] One or more HDL objects could not be logged because of object type or size limitations.  To see details please rerun the command with -verbose (-v).
 ## run -all
 Failure: End of Simulation(SUCCESS: End Of File)
-Time: 343200 ns  Iteration: 0  Process: /aes_256_encrypt_tb/i_aes_256_encrypt_stim/i_tbelib_sim_controller/p_no_activity_cnt  File: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd
-$finish called at time : 343200 ns : File "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd" Line 42
+Time: 134160 ns  Iteration: 0  Process: /aes_256_encrypt_tb/i_aes_256_encrypt_stim/i_tbelib_sim_controller/p_no_activity_cnt  File: C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd
+$finish called at time : 134160 ns : File "C:/Users/Anizetho/Documents/PyCharm/AES/AES_encoder/aes_encoder/verif/lib/tbelib_sim_controller.vhd" Line 42
 ## quit
-INFO: [Common 17-206] Exiting xsim at Tue Dec 11 21:20:09 2018...
+INFO: [Common 17-206] Exiting xsim at Tue Dec 11 21:17:40 2018...

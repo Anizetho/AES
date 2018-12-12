@@ -1,7 +1,7 @@
-Running: xsim.dir/mylib.aes_256_encrypt_tb/xsimk.exe -simmode gui -wdb mylib.aes_256_encrypt_tb.wdb -simrunnum 0 -socket 55384
+Running: xsim.dir/mylib.aes_256_encrypt_tb/xsimk.exe -simmode gui -wdb mylib.aes_256_encrypt_tb.wdb -simrunnum 0 -socket 57506
 Design successfully loaded
 Design Loading Memory Usage: 5088 KB (Peak: 5088 KB)
-Design Loading CPU Usage: 31 ms
+Design Loading CPU Usage: 30 ms
 Simulation completed
 Simulation Memory Usage: 14172 KB (Peak: 14172 KB)
-Simulation CPU Usage: 577 ms
+Simulation CPU Usage: 733 ms
